@@ -1,0 +1,5 @@
+$common-color: red;
+
+.foo {
+  color: $common-color;
+}
