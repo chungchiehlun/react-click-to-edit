@@ -1,5 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import C2E from '../build/index.min';
+import ClickToEdit from '../build/index.min';
 
-ReactDOM.render(<C2E />, document.getElementById('app'));
+ReactDOM.render(<ClickToEdit>Hello World</ClickToEdit>, document.getElementById('app'));

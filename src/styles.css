@@ -1,5 +1,14 @@
 $common-color: red;
 
+/* reset input */
+
+input {
+  font-family: sans-serif;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+}
+
 .foo {
   color: $common-color;
 }

@@ -45,6 +45,7 @@ export default {
         'react',
       ],
       plugins: [
+        'transform-object-rest-spread',
         'external-helpers',
         [
           'react-css-modules',
