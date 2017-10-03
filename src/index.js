@@ -33,28 +33,27 @@ const makeContentEditable = (WrappedComponent) => class extends React.Component 
     })
   }
   render() {
-    const { children, ...props } = this.props
+    const { customInputClass } = this.props
     return (
-      <WrappedComponent {...props} >
-        <section onClick={this.enterEditMode}>
-          {
-            (this.state.onEdit)
-            ? <input
-                type='text'
-                autoFocus
-                value={this.state.value}
-                onChange={this.changeValue}
-                onKeyPress={this.leaveEditMode}
-              />
-            : <span>{this.state.value}</span>
-          }
-        </section>
-      </WrappedComponent>
+      <section onClick={this.enterEditMode} >
+        {
+          (this.state.onEdit)
+          ? <input
+              type='text'
+              autoFocus
+              value={this.state.value}
+              className={customInputClass}
+              onChange={this.changeValue}
+              onKeyPress={this.leaveEditMode}
+            />
+          : <span>{this.state.value}</span>
+        }
+      </section>
     )
   }
 }
 
-const labelize = (props) => <span>{props.children}</span>
+const labelize = (props) => <section>{props.children}</section>
 
 const ClickToEdit = makeContentEditable(labelize)
 

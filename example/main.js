@@ -1,5 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ClickToEdit from '../build/index.min';
+import './main.css';
 
-ReactDOM.render(<ClickToEdit>Hello World</ClickToEdit>, document.getElementById('app'));
+const App = () => (
+  <ClickToEdit
+    customInputClass='customInputClass'
+    >Hello World
+  </ClickToEdit>
+)
+
+ReactDOM.render(<App />, document.getElementById('app'));
