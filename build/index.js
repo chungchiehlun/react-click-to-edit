@@ -249,7 +249,14 @@ var makeContentEditable = function makeContentEditable(WrappedComponent) {
       }
     }, {
       key: 'leaveEditMode',
-      value: function leaveEditMode(e) {
+      value: function leaveEditMode() {
+        this.setState(_extends({}, this.state, {
+          onEdit: false
+        }));
+      }
+    }, {
+      key: 'submitValue',
+      value: function submitValue(e) {
         if (e.keyCode === 13 || e.charCode == 13) {
           this.setState(_extends({}, this.state, {
             onEdit: false
@@ -266,7 +273,9 @@ var makeContentEditable = function makeContentEditable(WrappedComponent) {
     }, {
       key: 'render',
       value: function render() {
-        var customInputClass = this.props.customInputClass;
+        var _props = this.props,
+            customInput = _props.customInput,
+            customText = _props.customText;
 
         return React.createElement(
           'section',
@@ -275,12 +284,13 @@ var makeContentEditable = function makeContentEditable(WrappedComponent) {
             type: 'text',
             autoFocus: true,
             value: this.state.value,
-            className: customInputClass,
+            className: customInput,
             onChange: this.changeValue,
-            onKeyPress: this.leaveEditMode
+            onKeyPress: this.submitValue,
+            onBlur: this.leaveEditMode
           }) : React.createElement(
             'span',
-            null,
+            { className: customText },
             this.state.value
           )
         );
@@ -301,4 +311,4 @@ var labelize = function labelize(props) {
 var ClickToEdit = makeContentEditable(labelize);
 
 module.exports = ClickToEdit;
-//# sourceMappingURL=index.min.js.map
+//# sourceMappingURL=index.js.map

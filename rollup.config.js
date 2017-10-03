@@ -14,7 +14,7 @@ const generateScopedName = '[name]__[local]___[hash:base64:5]'
 export default {
   input: 'src/index.js',
   output: {
-    file: 'build/index.min.js',
+    file: 'build/index.js',
     format: 'cjs'
   },
   external: ['react', 'react-dom'],

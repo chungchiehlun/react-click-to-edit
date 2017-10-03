@@ -18,7 +18,13 @@ const makeContentEditable = (WrappedComponent) => class extends React.Component 
       onEdit: true,
     })
   }
-  leaveEditMode(e) {
+  leaveEditMode() {
+    this.setState({
+      ...this.state,
+      onEdit: false,
+    })
+  }
+  submitValue(e) {
     if(e.keyCode === 13 || e.charCode == 13){
       this.setState({
         ...this.state,
@@ -33,7 +39,7 @@ const makeContentEditable = (WrappedComponent) => class extends React.Component 
     })
   }
   render() {
-    const { customInputClass } = this.props
+    const { customInput, customText } = this.props
     return (
       <section onClick={this.enterEditMode} >
         {
@@ -42,11 +48,12 @@ const makeContentEditable = (WrappedComponent) => class extends React.Component 
               type='text'
               autoFocus
               value={this.state.value}
-              className={customInputClass}
+              className={customInput}
               onChange={this.changeValue}
-              onKeyPress={this.leaveEditMode}
+              onKeyPress={this.submitValue}
+              onBlur={this.leaveEditMode}
             />
-          : <span>{this.state.value}</span>
+          : <span className={customText}>{this.state.value}</span>
         }
       </section>
     )

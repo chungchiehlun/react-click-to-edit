@@ -5,8 +5,10 @@ import './main.css';
 
 const App = () => (
   <ClickToEdit
-    customInputClass='customInputClass'
-    >Hello World
+    customInput='input'
+    customText='text'
+    >
+    Click to edit here !
   </ClickToEdit>
 )
 
