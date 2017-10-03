@@ -1,8 +1,8 @@
 {
   "name": "react-click-to-edit",
   "version": "0.1.0",
-  "description": "",
-  "main": "index.js",
+  "description": "A simple wrapper component make any text editable.",
+  "main": "build/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack-dev-server",
