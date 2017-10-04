@@ -1,12 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ClickToEdit from '../build/index.min';
+import ClickToEdit from '../build';
 import './main.css';
 
 const App = () => (
   <ClickToEdit
-    customInput='input'
-    customText='text'
+    customStyle='myStyle'
     >
     Click to edit here !
   </ClickToEdit>

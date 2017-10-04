@@ -8,7 +8,7 @@ module.exports = {
   },
   output: {
     filename: "main.bundle.js",
-    path: path.join(__dirname, 'dist'),
+    path: path.join(__dirname, 'example'),
     publicPath: '/.tmp/'
   },
   devServer: {

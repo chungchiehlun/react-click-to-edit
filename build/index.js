@@ -22,7 +22,7 @@ function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'defau
 
 var React = _interopDefault(require('react'));
 
-__$styleInject("/* reset input */\n\ninput {\n  font-family: sans-serif;\n  font-size: 100%;\n  line-height: 1.15;\n  margin: 0;\n}\n\n.styles__foo___3TUTh {\n  color: red;\n}\n", undefined);
+__$styleInject("/* reset */\n.styles__reset___JYk7- {\n  font-size: 100%;\n  font-family: sans-serif;\n  display: block;\n  width: 100%;\n  height: 100%;\n}\n\n.styles__reset--input___CnkKb {\n  line-height: 1.15;\n  margin: 0;\n  overflow: visible;\n}\n\n/* default style */\n.styles__wrapper___3KXDn {\n  font-size: 16px;\n  width: 155px;\n  height: 35px;\n}\n\n.styles__input___15JGo {\n  border: none;\n  border-radius: 0.2em;\n  text-align: center;\n  -webkit-box-shadow: 0 0 1em 0.25em rgba(0, 0, 0, .1);\n          box-shadow: 0 0 1em 0.25em rgba(0, 0, 0, .1);\n}\n\n.styles__text___1_7-z {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n", undefined);
 
 var asyncGenerator = function () {
   function AwaitValue(value) {
@@ -232,34 +232,35 @@ var makeContentEditable = function makeContentEditable(WrappedComponent) {
 
       _this.state = {
         value: props.children,
-        onEdit: false
+        onEditMode: false
       };
-      _this.enterEditMode = _this.enterEditMode.bind(_this);
-      _this.leaveEditMode = _this.leaveEditMode.bind(_this);
+      _this.getIntoEditMode = _this.getIntoEditMode.bind(_this);
+      _this.handleEnterKey = _this.handleEnterKey.bind(_this);
+      _this.getOffEditMode = _this.getOffEditMode.bind(_this);
       _this.changeValue = _this.changeValue.bind(_this);
       return _this;
     }
 
     createClass(_class, [{
-      key: 'enterEditMode',
-      value: function enterEditMode() {
+      key: 'getIntoEditMode',
+      value: function getIntoEditMode() {
         this.setState(_extends({}, this.state, {
-          onEdit: true
+          onEditMode: true
         }));
       }
     }, {
-      key: 'leaveEditMode',
-      value: function leaveEditMode() {
+      key: 'getOffEditMode',
+      value: function getOffEditMode() {
         this.setState(_extends({}, this.state, {
-          onEdit: false
+          onEditMode: false
         }));
       }
     }, {
-      key: 'submitValue',
-      value: function submitValue(e) {
+      key: 'handleEnterKey',
+      value: function handleEnterKey(e) {
         if (e.keyCode === 13 || e.charCode == 13) {
           this.setState(_extends({}, this.state, {
-            onEdit: false
+            onEditMode: false
           }));
         }
       }
@@ -273,24 +274,26 @@ var makeContentEditable = function makeContentEditable(WrappedComponent) {
     }, {
       key: 'render',
       value: function render() {
-        var _props = this.props,
-            customInput = _props.customInput,
-            customText = _props.customText;
+        var customStyle = this.props.customStyle;
 
         return React.createElement(
           'section',
-          { onClick: this.enterEditMode },
-          this.state.onEdit ? React.createElement('input', {
+          {
+            className: (customStyle ? customStyle + ' ' : '') + 'styles__wrapper___3KXDn',
+            onClick: this.getIntoEditMode },
+          this.state.onEditMode ? React.createElement('input', {
             type: 'text',
             autoFocus: true,
             value: this.state.value,
-            className: customInput,
+            className: 'styles__input___15JGo styles__reset___JYk7- styles__reset--input___CnkKb',
             onChange: this.changeValue,
-            onKeyPress: this.submitValue,
-            onBlur: this.leaveEditMode
+            onKeyPress: this.handleEnterKey,
+            onBlur: this.getOffEditMode
           }) : React.createElement(
             'span',
-            { className: customText },
+            {
+              className: 'styles__text___1_7-z styles__reset___JYk7-'
+            },
             this.state.value
           )
         );

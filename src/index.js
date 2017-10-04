@@ -6,29 +6,30 @@ const makeContentEditable = (WrappedComponent) => class extends React.Component 
     super(props)
     this.state = {
       value: props.children,
-      onEdit: false,
+      onEditMode: false,
     }
-    this.enterEditMode = this.enterEditMode.bind(this)
-    this.leaveEditMode = this.leaveEditMode.bind(this)
+    this.getIntoEditMode = this.getIntoEditMode.bind(this)
+    this.handleEnterKey = this.handleEnterKey.bind(this)
+    this.getOffEditMode = this.getOffEditMode.bind(this)
     this.changeValue = this.changeValue.bind(this)
   }
-  enterEditMode() {
+  getIntoEditMode() {
     this.setState({
       ...this.state,
-      onEdit: true,
+      onEditMode: true,
     })
   }
-  leaveEditMode() {
+  getOffEditMode() {
     this.setState({
       ...this.state,
-      onEdit: false,
+      onEditMode: false,
     })
   }
-  submitValue(e) {
+  handleEnterKey(e) {
     if(e.keyCode === 13 || e.charCode == 13){
       this.setState({
         ...this.state,
-        onEdit: false,
+        onEditMode: false,
       })
     }
   }
@@ -39,21 +40,28 @@ const makeContentEditable = (WrappedComponent) => class extends React.Component 
     })
   }
   render() {
-    const { customInput, customText } = this.props
+    const { customStyle } = this.props
     return (
-      <section onClick={this.enterEditMode} >
+      <section
+        styleName='wrapper'
+        className={customStyle}
+        onClick={this.getIntoEditMode} >
         {
-          (this.state.onEdit)
-          ? <input
-              type='text'
-              autoFocus
-              value={this.state.value}
-              className={customInput}
-              onChange={this.changeValue}
-              onKeyPress={this.submitValue}
-              onBlur={this.leaveEditMode}
-            />
-          : <span className={customText}>{this.state.value}</span>
+          (this.state.onEditMode) ? (
+            <input
+               type='text'
+               autoFocus
+               value={this.state.value}
+               styleName='input'
+               onChange={this.changeValue}
+               onKeyPress={this.handleEnterKey}
+               onBlur={this.getOffEditMode}
+             />
+          ) : (
+            <span
+              styleName='text'
+            >{this.state.value}</span>
+          )
         }
       </section>
     )
