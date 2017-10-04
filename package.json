@@ -8,7 +8,13 @@
     "dev": "webpack-dev-server",
     "build:watch": "rollup -c --watch"
   },
-  "keywords": ["react","reactjs","component","simple","editable"],
+  "keywords": [
+    "react",
+    "reactjs",
+    "component",
+    "simple",
+    "editable"
+  ],
   "author": "Jay Chung <wuceh14678@gmail.com> (https://github.com/chungchiehlun)",
   "license": "MIT",
   "repository": {
@@ -28,7 +34,6 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.24.1",
-    "concurrently": "^3.5.0",
     "css-loader": "^0.28.7",
     "html-webpack-plugin": "^2.30.1",
     "postcss-cssnext": "^3.0.2",
