@@ -1,6 +1,6 @@
 {
   "name": "react-click-to-edit",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A simple wrapper component make any text editable.",
   "main": "build/index.js",
   "scripts": {
