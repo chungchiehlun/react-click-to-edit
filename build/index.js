@@ -254,6 +254,9 @@ var makeContentEditable = function makeContentEditable(WrappedComponent) {
         this.setState(_extends({}, this.state, {
           onEditMode: false
         }));
+        if (this.props.endEditing) {
+          this.props.endEditing(this.state.value);
+        }
       }
     }, {
       key: 'handleEnterKey',
@@ -262,6 +265,9 @@ var makeContentEditable = function makeContentEditable(WrappedComponent) {
           this.setState(_extends({}, this.state, {
             onEditMode: false
           }));
+          if (this.props.endEditing) {
+            this.props.endEditing(this.state.value);
+          }
         }
       }
     }, {
@@ -279,7 +285,7 @@ var makeContentEditable = function makeContentEditable(WrappedComponent) {
         return React.createElement(
           'section',
           {
-            className: (customStyle ? customStyle + ' ' : '') + 'styles__wrapper___3KXDn',
+            className: (customStyle || '' ? (customStyle || '') + ' ' : '') + 'styles__wrapper___3KXDn',
             onClick: this.getIntoEditMode },
           this.state.onEditMode ? React.createElement('input', {
             type: 'text',

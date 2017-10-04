@@ -6,6 +6,7 @@ import './main.css';
 const App = () => (
   <ClickToEdit
     customStyle='myStyle'
+    endEditing={(value) => console.log(`New value: ${value}`)}
     >
     Click to edit here !
   </ClickToEdit>

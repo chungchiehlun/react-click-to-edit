@@ -24,6 +24,9 @@ const makeContentEditable = (WrappedComponent) => class extends React.Component 
       ...this.state,
       onEditMode: false,
     })
+    if (this.props.endEditing) {
+      this.props.endEditing(this.state.value)
+    }
   }
   handleEnterKey(e) {
     if(e.keyCode === 13 || e.charCode == 13){
@@ -31,6 +34,9 @@ const makeContentEditable = (WrappedComponent) => class extends React.Component 
         ...this.state,
         onEditMode: false,
       })
+      if (this.props.endEditing) {
+        this.props.endEditing(this.state.value)
+      }
     }
   }
   changeValue(e) {
@@ -44,7 +50,7 @@ const makeContentEditable = (WrappedComponent) => class extends React.Component 
     return (
       <section
         styleName='wrapper'
-        className={customStyle}
+        className={customStyle || ''}
         onClick={this.getIntoEditMode} >
         {
           (this.state.onEditMode) ? (
