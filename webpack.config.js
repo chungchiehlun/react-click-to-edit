@@ -1,18 +1,18 @@
-const path = require('path');
-const webpack = require('webpack');
-const HTMLWebpackPlugin = require('html-webpack-plugin');
+const path = require("path");
+const webpack = require("webpack");
 
 module.exports = {
   entry: {
-    main: './example/main.js'
+    main: "./demo/main.js"
   },
   output: {
-    filename: "main.bundle.js",
-    path: path.join(__dirname, 'example'),
-    publicPath: '/.tmp/'
+    filename: "[name].bundle.js",
+    // default value, relative to HTML page (same directory)
+    publicPath: ""
   },
   devServer: {
-    contentBase: './example',
+    contentBase: "./demo",
+    port: 9000
   },
   module: {
     rules: [
@@ -20,18 +20,33 @@ module.exports = {
         test: /\.js$/,
         exclude: /(node_modules|bower_components)/,
         use: {
-          loader: 'babel-loader',
+          loader: "babel-loader",
           options: {
-            presets: ['react', 'env']
+            presets: ["react", "env"]
           }
         }
       },
       {
         test: /\.css$/,
         use: [
-          'style-loader',
-          { loader: 'css-loader', options: { importLoaders: 1 } },
-          'postcss-loader'
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              importLoaders: 1
+            }
+          },
+          {
+            loader: "postcss-loader",
+            options: {
+              // Webpack requires an identifier (ident) in options when {Function}/require is used.
+              // The ident can be freely named as long as it is unique.
+              ident: "postcss",
+              // The query parameter importLoaders allows to configure how many loaders
+              // before css-loader should be applied to @imported resources.
+              plugins: () => [require("postcss-cssnext")()]
+            }
+          }
         ]
       }
     ]
