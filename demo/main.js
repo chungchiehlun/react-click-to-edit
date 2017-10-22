@@ -8,7 +8,7 @@ const App = () => (
     customStyle="myStyle"
     endEditing={value => console.log(`New value: ${value}`)}
   >
-    Click to edit here !
+    Click to edit here !!
   </ClickToEdit>
 );
 
