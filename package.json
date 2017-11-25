@@ -8,7 +8,8 @@
     "precommit": "lint-staged"
   },
   "lint-staged": {
-    "*.{js,json,css}": ["prettier --write", "git add"]
+    "src/**/*.{js,json,css}": ["prettier --write", "git add"],
+    "*.config.js": ["prettier --write", "git add"]
   },
   "keywords": ["react", "reactjs", "component", "simple", "editable"],
   "author":
