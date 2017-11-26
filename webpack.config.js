@@ -3,7 +3,7 @@ const webpack = require("webpack");
 
 module.exports = {
   entry: {
-    main: "./demo/main.js"
+    main: "./devContent/main.js"
   },
   output: {
     filename: "[name].bundle.js",
@@ -11,8 +11,10 @@ module.exports = {
     publicPath: ""
   },
   devServer: {
-    contentBase: "./demo",
-    port: 9000
+    contentBase: "./devContent",
+    port: 9000,
+    open: true,
+    lazy: true
   },
   module: {
     rules: [
