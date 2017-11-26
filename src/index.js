@@ -49,23 +49,19 @@ const makeContentEditable = WrappedComponent =>
     render() {
       const { customStyle } = this.props;
       return (
-        <section
-          styleName="wrapper"
-          className={customStyle || ""}
-          onClick={this.getIntoEditMode}
-        >
+        <section className="CTE--wrapper" onClick={this.getIntoEditMode}>
           {this.state.onEditMode ? (
             <input
               type="text"
               autoFocus
               value={this.state.value}
-              styleName="input"
+              className="CTE--input"
               onChange={this.changeValue}
               onKeyPress={this.handleEnterKey}
               onBlur={this.getOffEditMode}
             />
           ) : (
-            <span styleName="text">{this.state.value}</span>
+            <span className="CTE--text">{this.state.value}</span>
           )}
         </section>
       );

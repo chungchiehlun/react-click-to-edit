@@ -1,37 +1,36 @@
-/* reset */
-.reset {
-  font-size: 100%;
-  font-family: sans-serif;
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-.reset--input {
-  line-height: 1.15;
-  margin: 0;
-  overflow: visible;
-}
-
 /* default style */
-.wrapper {
-  font-size: 16px;
-  width: 155px;
-  height: 35px;
-}
+.CTE {
+  &--wrapper {
+    font-size: 16px;
+    width: 155px;
+    height: 35px;
+  }
 
-.input {
-  composes: reset;
-  composes: reset--input;
-  border: none;
-  border-radius: 0.2em;
-  text-align: center;
-  box-shadow: 0 0 1em 0.25em rgba(0,0,0,0.1);
-}
+  &--input {
+    font-size: 100%;
+    font-family: sans-serif;
+    display: block;
+    width: 100%;
+    height: 100%;
 
-.text {
-  composes: reset;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    line-height: 1.15;
+    margin: 0;
+    overflow: visible;
+    border: none;
+    border-radius: 0.2em;
+    text-align: center;
+    box-shadow: 0 0 1em 0.25em rgba(0, 0, 0, 0.1);
+  }
+
+  &--text {
+    font-size: 100%;
+    font-family: sans-serif;
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
