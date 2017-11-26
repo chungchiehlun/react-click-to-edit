@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import ClickToEdit from "../build";
+import ClickToEdit from "../dist/index.umd.js";
 import "./main.css";
 
 const App = () => (
