@@ -1,75 +1,65 @@
 import React from "react";
+import PropTypes from "prop-types";
+import "normalize.css/normalize.css";
+
 import "./styles.css";
 
-const makeContentEditable = WrappedComponent =>
-  class extends React.Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        value: props.children,
-        onEditMode: false
-      };
-      this.getIntoEditMode = this.getIntoEditMode.bind(this);
-      this.handleEnterKey = this.handleEnterKey.bind(this);
-      this.getOffEditMode = this.getOffEditMode.bind(this);
-      this.changeValue = this.changeValue.bind(this);
+class ClickToEdit extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      onEditMode: false
+    };
+    this.input = React.createRef();
+  }
+  getIntoEditMode = () => {
+    this.setState({
+      onEditMode: true
+    });
+  };
+  getOffEditMode = () => {
+    this.setState({
+      onEditMode: false
+    });
+    if (this.props.endEditing) {
+      this.props.endEditing(this.input.current.value);
     }
-    getIntoEditMode() {
+  };
+  handleEnterKey = e => {
+    if (e.keyCode === 13 || e.charCode == 13) {
       this.setState({
-        ...this.state,
-        onEditMode: true
-      });
-    }
-    getOffEditMode() {
-      this.setState({
-        ...this.state,
         onEditMode: false
       });
       if (this.props.endEditing) {
-        this.props.endEditing(this.state.value);
+        this.props.endEditing(this.input.current.value);
       }
-    }
-    handleEnterKey(e) {
-      if (e.keyCode === 13 || e.charCode == 13) {
-        this.setState({
-          ...this.state,
-          onEditMode: false
-        });
-        if (this.props.endEditing) {
-          this.props.endEditing(this.state.value);
-        }
-      }
-    }
-    changeValue(e) {
-      this.setState({
-        ...this.state,
-        value: e.target.value
-      });
-    }
-    render() {
-      const { customStyle } = this.props;
-      return (
-        <section className="CTE--wrapper" onClick={this.getIntoEditMode}>
-          {this.state.onEditMode ? (
-            <input
-              type="text"
-              autoFocus
-              value={this.state.value}
-              className="CTE--input"
-              onChange={this.changeValue}
-              onKeyPress={this.handleEnterKey}
-              onBlur={this.getOffEditMode}
-            />
-          ) : (
-            <span className="CTE--text">{this.state.value}</span>
-          )}
-        </section>
-      );
     }
   };
+  render() {
+    // const { customStyle } = this.props;
+    return (
+      <section className="CTE--wrapper" onClick={this.getIntoEditMode}>
+        {this.state.onEditMode ? (
+          <input
+            type="text"
+            autoFocus
+            defaultValue={this.props.defaultValue}
+            className="CTE--input"
+            onKeyPress={this.handleEnterKey}
+            onBlur={this.getOffEditMode}
+            ref={this.input}
+          />
+        ) : (
+          <span className="CTE--text">{this.props.defaultValue}</span>
+        )}
+      </section>
+    );
+  }
+}
 
-const labelize = props => <section>{props.children}</section>;
-
-const ClickToEdit = makeContentEditable(labelize);
+ClickToEdit.propTypes = {
+  defaultValue: PropTypes.string.isRequired,
+  endEditing: PropTypes.func
+};
 
 export default ClickToEdit;

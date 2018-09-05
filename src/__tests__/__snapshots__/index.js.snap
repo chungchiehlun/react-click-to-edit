@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot - default 1`] = `
+<section
+  className="CTE--wrapper"
+  onClick={[Function]}
+>
+  <span
+    className="CTE--text"
+  >
+    foo
+  </span>
+</section>
+`;
+
+exports[`snapshot - onEdit 1`] = `
+<section
+  className="CTE--wrapper"
+  onClick={[Function]}
+>
+  <input
+    autoFocus={true}
+    className="CTE--input"
+    defaultValue="bar"
+    onBlur={[Function]}
+    onKeyPress={[Function]}
+    type="text"
+  />
+</section>
+`;
