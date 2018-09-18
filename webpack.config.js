@@ -46,7 +46,7 @@ module.exports = {
               ident: "postcss",
               // The query parameter importLoaders allows to configure how many loaders
               // before css-loader should be applied to @imported resources.
-              plugins: () => [require("postcss-cssnext")()]
+              plugins: () => [require("postcss-preset-env")({ stage: 0 })]
             }
           }
         ]

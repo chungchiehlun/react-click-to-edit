@@ -1,8 +1,8 @@
 import rollup from "rollup";
 import babel from "rollup-plugin-babel";
 import postcss from "rollup-plugin-postcss";
-import cssnext from "postcss-cssnext";
-import nested from "postcss-nested";
+import postcssPresetEnv from "postcss-preset-env";
+import postcssNested from "postcss-nested";
 import spawn from "cross-spawn";
 import pkg from "./package.json";
 
@@ -30,8 +30,12 @@ const babelOptions = {
 };
 
 const postcssOptions = {
-  plugins: [cssnext(), nested()]
-  // extract : './build'
+  plugins: [
+    postcssPresetEnv({
+      stage: 0
+    }),
+    postcssNested()
+  ]
 };
 
 export default [
@@ -49,7 +53,6 @@ export default [
       react: "React"
     }
   },
-
   // CommonJS (for Node) and ES module (for bundlers) build.
   // (We could have three entries in the configuration array
   // instead of two, but it's quicker to generate multiple
