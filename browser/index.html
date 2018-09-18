@@ -2,29 +2,54 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
 </head>
 
 <body>
-    <div id='app'></div>
-    <script src="https://unpkg.com/react@16.0.0/umd/react.production.min.js"></script>
-    <script src="https://unpkg.com/react-dom@16.0.0/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/@babel/standalone@7.0.0-beta.32/babel.min.js"></script>
-    <script src="../dist/index.umd.js"></script>
-    <script type="text/babel" data-presets="es2015,react">
-        const App = () => (
-            <ClickToEdit
-                customStyle="myStyle"
-                endEditing={value => console.log(`New value: ${value}`)}
-            >
-                Click to edit here !!
-            </ClickToEdit>
-        );
-        ReactDOM.render(<App />, document.getElementById("app"));
-    </script>
+  <div id='app'></div>
+  <!-- https://reactjs.org/docs/cdn-links.html -->
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+  <!-- https://babeljs.io/docs/en/next/babel-standalone.html -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="../dist/index.umd.js"></script>
+  <script type="text/babel" data-presets="es2015,react">
+    const { Provider, Consumer } = React.createContext();
+
+    class App extends React.Component {
+      constructor(props) {
+        super(props);
+
+        this.updateDefaultValue = (newValue) => {
+          this.setState(state => ({
+            value: newValue
+          }));
+        };
+
+        this.state = {
+          value: "Hello World"
+        }
+      }
+      render() {
+        return (
+          <Provider value={this.state.value}>
+            <Consumer>
+              {value => (
+                <ClickToEdit
+                  defaultValue={value}
+                  endEditing={this.updateDefaultValue}
+                />
+              )}
+            </Consumer>
+          </Provider>
+        )
+      }
+    }
+    ReactDOM.render(<App />, document.getElementById("app"));
+  </script>
 </body>
 
 </html>

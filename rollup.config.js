@@ -3,6 +3,9 @@ import babel from "rollup-plugin-babel";
 import postcss from "rollup-plugin-postcss";
 import postcssPresetEnv from "postcss-preset-env";
 import postcssNested from "postcss-nested";
+import resolve from "rollup-plugin-node-resolve";
+import commonjs from "rollup-plugin-commonjs";
+import replace from "rollup-plugin-replace";
 import spawn from "cross-spawn";
 import pkg from "./package.json";
 
@@ -10,7 +13,7 @@ const watcher = rollup.watch({});
 
 watcher.on("event", event => {
   if (event.code === "START") {
-    spawn("webpack-dev-server", { stdio: "inherit" });
+    // spawn("webpack-dev-server", { stdio: "inherit" });
   }
 });
 
@@ -44,14 +47,23 @@ export default [
     input: "src/index.js",
     output: {
       file: pkg.browser,
-      format: "umd"
+      format: "umd",
+      name: "ClickToEdit",
+      globals: {
+        react: "React"
+      }
     },
-    plugins: [postcss(postcssOptions), babel(babelOptions)],
-    external: ["react"],
-    name: "ClickToEdit",
-    globals: {
-      react: "React"
-    }
+    plugins: [
+      postcss(postcssOptions),
+      babel(babelOptions),
+      resolve(),
+      commonjs(),
+      // https://github.com/rollup/rollup/issues/487
+      replace({
+        "process.env.NODE_ENV": JSON.stringify("production")
+      })
+    ],
+    external: ["react"]
   },
   // CommonJS (for Node) and ES module (for bundlers) build.
   // (We could have three entries in the configuration array
@@ -65,7 +77,12 @@ export default [
       { file: pkg.main, format: "cjs" },
       { file: pkg.module, format: "es" }
     ],
-    plugins: [postcss(postcssOptions), babel(babelOptions)],
+    plugins: [
+      postcss(postcssOptions),
+      babel(babelOptions),
+      resolve(),
+      commonjs()
+    ],
     external: ["react"]
   }
 ];

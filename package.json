@@ -7,6 +7,7 @@
   "browser": "dist/index.umd.js",
   "scripts": {
     "dev": "rollup -c --watch",
+    "bundle": "rollup -c",
     "test": "jest"
   },
   "husky": {
@@ -57,16 +58,21 @@
     "postcss-nested": "^4.1.0",
     "postcss-preset-env": "^5.3.0",
     "prettier": "^1.7.4",
-    "prop-types": "^15.6.2",
     "react": "^16.5.1",
     "react-dom": "^16.5.1",
     "react-test-renderer": "^16.4.2",
     "rollup": "^0.66.0",
     "rollup-plugin-babel": "^4.0.1",
+    "rollup-plugin-commonjs": "^9.1.8",
     "rollup-plugin-node-globals": "^1.1.0",
+    "rollup-plugin-node-resolve": "^3.4.0",
     "rollup-plugin-postcss": "^1.6.2",
+    "rollup-plugin-replace": "^2.0.0",
     "style-loader": "^0.19.0",
     "webpack": "^3.8.1",
     "webpack-dev-server": "^2.9.3"
+  },
+  "dependencies": {
+    "prop-types": "^15.6.2"
   }
 }
