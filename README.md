@@ -1,40 +1,42 @@
 ## React Click-To-Edit
-A simple wrapper component make any text editable.
+A simple component make the text editable.
 
-## Getting Started
-### Installation
-`npm install react-click-to-edit`
+## Installation
 
-### Usage
+```bash
+$ npm install react-click-to-edit
+or
+$ yarn add react-click-to-edit
+```
+
+## General Usage
 
 ```jsx
-import ClickToEdit from 'react-click-to-edit'
+import ClickToEdit from "react-click-to-edit"
 
 <ClickToEdit
-  customStyle='myStyle'
-  endEditing={(value) => console.log(`New value: ${value}`)}
-  >
-  Click to edit here !
-</ClickToEdit>
+  /*
+    String className to be applied to wrapper the input and text element.
+  */
+  wrapperClass="wrapperClase"
+  /*
+  	String className to be applied to the input element.
+  */
+  inputClass="inputClass"
+  /*
+  	String className to be applied to the text element.
+  */
+  textClass="textClass"
+  /*
+  	String value to be applied to the input and text element.
+  */
+  value={value}
+  /*
+  	Function that will be called after the input element lose focus or press carriage return.
+  */
+  endEditing={() => {}}
+/>
 ```
-
-### Optional Props
-**customStyle: {String}**
-
-Customize component style which will be added to the outer container.
-
-```css
-.myStyle {
-  font-size: 1.3em;
-  width: 200px;
-  height: 40px;
-}
-```
-
-**endEditing: {Function}**
-
-Access the latest value after editing. It's convenient to dispatch actions to update store if you using **redux** or **flux** in your project.
-
 
 ## Issues
 Feel free to submit issues and enhancement requests.
