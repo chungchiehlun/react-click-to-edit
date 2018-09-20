@@ -13,7 +13,7 @@ const watcher = rollup.watch({});
 
 watcher.on("event", event => {
   if (event.code === "START") {
-    // spawn("webpack-dev-server", { stdio: "inherit" });
+    spawn("webpack-dev-server", { stdio: "inherit" });
   }
 });
 

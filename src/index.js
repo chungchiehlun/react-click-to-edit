@@ -35,21 +35,25 @@ class ClickToEdit extends React.Component {
     }
   };
   render() {
-    // const { customStyle } = this.props;
     return (
-      <section className="CTE--wrapper" onClick={this.getIntoEditMode}>
+      <section
+        className={`CTE--wrapper ${this.props.wrapperClass}`}
+        onClick={this.getIntoEditMode}
+      >
         {this.state.onEditMode ? (
           <input
             type="text"
             autoFocus
-            defaultValue={this.props.defaultValue}
-            className="CTE--input"
+            defaultValue={this.props.value}
+            className={`CTE--input ${this.props.inputClass}`}
             onKeyPress={this.handleEnterKey}
             onBlur={this.getOffEditMode}
             ref={this.input}
           />
         ) : (
-          <span className="CTE--text">{this.props.defaultValue}</span>
+          <span className={`CTE--text ${this.props.textClass}`}>
+            {this.props.value}
+          </span>
         )}
       </section>
     );
@@ -57,8 +61,11 @@ class ClickToEdit extends React.Component {
 }
 
 ClickToEdit.propTypes = {
-  defaultValue: PropTypes.string.isRequired,
-  endEditing: PropTypes.func
+  wrapperClass: PropTypes.string.isRequired,
+  inputClass: PropTypes.string.isRequired,
+  textClass: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  endEditing: PropTypes.func.isRequired
 };
 
 export default ClickToEdit;

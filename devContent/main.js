@@ -9,7 +9,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
-    this.updateDefaultValue = (newValue) => {
+    this.updateDefaultValue = newValue => {
       this.setState(state => ({
         value: newValue
       }));
@@ -17,21 +17,26 @@ class App extends React.Component {
 
     this.state = {
       value: "Hello World"
-    }
+    };
   }
   render() {
     return (
       <Provider value={this.state.value}>
         <Consumer>
           {value => (
-            <ClickToEdit
-              defaultValue={value}
-              endEditing={this.updateDefaultValue}
-            />
+            <div>
+              <ClickToEdit
+                wrapperClass="wrapperClase"
+                inputClass="inputClass"
+                textClass="textClass"
+                value={value}
+                endEditing={this.updateDefaultValue}
+              />
+            </div>
           )}
         </Consumer>
       </Provider>
-    )
+    );
   }
 }
 
