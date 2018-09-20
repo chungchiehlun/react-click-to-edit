@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import classNames from "classnames";
 
 import "./styles.css";
 
@@ -37,7 +38,7 @@ class ClickToEdit extends React.Component {
   render() {
     return (
       <section
-        className={`CTE--wrapper ${this.props.wrapperClass}`}
+        className={classNames("CTE--wrapper", this.props.wrapperClass)}
         onClick={this.getIntoEditMode}
       >
         {this.state.onEditMode ? (
@@ -45,13 +46,13 @@ class ClickToEdit extends React.Component {
             type="text"
             autoFocus
             defaultValue={this.props.value}
-            className={`CTE--input ${this.props.inputClass}`}
+            className={classNames("CTE--input", this.props.inputClass)}
             onKeyPress={this.handleEnterKey}
             onBlur={this.getOffEditMode}
             ref={this.input}
           />
         ) : (
-          <span className={`CTE--text ${this.props.textClass}`}>
+          <span className={classNames("CTE--text", this.props.textClass)}>
             {this.props.value}
           </span>
         )}
@@ -61,11 +62,17 @@ class ClickToEdit extends React.Component {
 }
 
 ClickToEdit.propTypes = {
-  wrapperClass: PropTypes.string.isRequired,
-  inputClass: PropTypes.string.isRequired,
-  textClass: PropTypes.string.isRequired,
+  wrapperClass: PropTypes.string,
+  inputClass: PropTypes.string,
+  textClass: PropTypes.string,
   value: PropTypes.string.isRequired,
   endEditing: PropTypes.func.isRequired
+};
+
+ClickToEdit.defaultProps = {
+  wrapperClass: "",
+  inputClass: "",
+  textClass: ""
 };
 
 export default ClickToEdit;

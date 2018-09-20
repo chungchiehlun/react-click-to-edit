@@ -73,6 +73,7 @@
     "webpack-dev-server": "^2.9.3"
   },
   "dependencies": {
+    "classnames": "^2.2.6",
     "prop-types": "^15.6.2"
   }
 }
