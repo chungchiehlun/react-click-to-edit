@@ -25,7 +25,7 @@ class ClickToEdit extends React.Component {
       this.props.endEditing(this.input.current.value);
     }
   };
-  handleEnterKey = (e) => {
+  handleKeys = (e) => {
     if (e.key === 'Enter') {
       this.setState({
         onEditMode: false,
@@ -33,6 +33,10 @@ class ClickToEdit extends React.Component {
       if (this.props.endEditing) {
         this.props.endEditing(this.input.current.value);
       }
+    } else if (e.key === 'Escape') {
+      this.setState({
+        onEditMode: false,
+      });
     }
   };
   render() {
@@ -49,7 +53,7 @@ class ClickToEdit extends React.Component {
             autoFocus
             defaultValue={this.props.value}
             className={classNames('CTE--input', this.props.inputClass)}
-            onKeyPress={this.handleEnterKey}
+            onKeyDown={this.handleKeys}
             onBlur={this.getOffEditMode}
             ref={this.input}
           />
