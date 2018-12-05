@@ -21,7 +21,8 @@ class ClickToEdit extends React.Component {
     this.setState({
       onEditMode: false,
     });
-    if (this.props.endEditing) {
+    const isDifferent = this.props.value !== this.input.current.value;
+    if (this.props.endEditing && isDifferent) {
       this.props.endEditing(this.input.current.value);
     }
   };
