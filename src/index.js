@@ -33,6 +33,10 @@ class ClickToEdit extends React.Component {
       if (this.props.endEditing) {
         this.props.endEditing(this.input.current.value);
       }
+    } else {
+      if (this.props.onKeyPress && typeof this.props.onKeyPress === 'function') {
+        this.props.onKeyPress(e);
+      }
     }
   };
   render() {
@@ -52,10 +56,10 @@ class ClickToEdit extends React.Component {
             ref={this.input}
           />
         ) : (
-          <span className={classNames("CTE--text", this.props.textClass)}>
-            {this.props.value}
-          </span>
-        )}
+            <span className={classNames("CTE--text", this.props.textClass)}>
+              {this.props.value}
+            </span>
+          )}
       </section>
     );
   }
@@ -66,7 +70,8 @@ ClickToEdit.propTypes = {
   inputClass: PropTypes.string,
   textClass: PropTypes.string,
   value: PropTypes.string.isRequired,
-  endEditing: PropTypes.func.isRequired
+  endEditing: PropTypes.func.isRequired,
+  onKeyPress: PropTypes.func
 };
 
 ClickToEdit.defaultProps = {
