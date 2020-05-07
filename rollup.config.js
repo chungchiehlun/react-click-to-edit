@@ -1,21 +1,11 @@
-import rollup from "rollup";
-import babel from "rollup-plugin-babel";
+import babel from "@rollup/plugin-babel";
 import postcss from "rollup-plugin-postcss";
 import postcssPresetEnv from "postcss-preset-env";
 import postcssNested from "postcss-nested";
-import resolve from "rollup-plugin-node-resolve";
-import commonjs from "rollup-plugin-commonjs";
-import replace from "rollup-plugin-replace";
-import spawn from "cross-spawn";
+import resolve from "@rollup/plugin-node-resolve";
+import commonjs from "@rollup/plugin-commonjs";
+import replace from "@rollup/plugin-replace";
 import pkg from "./package.json";
-
-const watcher = rollup.watch({});
-
-watcher.on("event", event => {
-  if (event.code === "START") {
-    spawn("webpack-dev-server", { stdio: "inherit" });
-  }
-});
 
 const babelOptions = {
   babelrc: false,
@@ -29,7 +19,8 @@ const babelOptions = {
     ],
     "@babel/react"
   ],
-  plugins: ["@babel/proposal-class-properties"]
+  plugins: ["@babel/proposal-class-properties"],
+  exclude: "node_modules/**"
 };
 
 const postcssOptions = {
