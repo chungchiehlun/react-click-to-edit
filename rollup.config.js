@@ -1,7 +1,5 @@
 import babel from "@rollup/plugin-babel";
 import postcss from "rollup-plugin-postcss";
-import postcssPresetEnv from "postcss-preset-env";
-import postcssNested from "postcss-nested";
 import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import replace from "@rollup/plugin-replace";
@@ -25,10 +23,14 @@ const babelOptions = {
 
 const postcssOptions = {
   plugins: [
-    postcssPresetEnv({
-      stage: 0
+    require("postcss-flexbugs-fixes"),
+    require("postcss-preset-env")({
+      autoprefixer: {
+        flexbox: "no-2009"
+      },
+      stage: 3
     }),
-    postcssNested()
+    require("postcss-nested")
   ]
 };
 

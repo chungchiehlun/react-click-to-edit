@@ -28,9 +28,7 @@ test("enter editing mode after clicking it", () => {
 test("invoke endEditing function and leave editing mode after pressing the enter key", () => {
   const mock = jest.fn();
   const wrapper = mount(<ClickToEdit value="HELLO" endEditing={mock} />);
-  wrapper.setState({
-    onEditMode: true
-  });
+  wrapper.simulate("click");
   const inputWrapper = wrapper.find("input.CTE--input");
   inputWrapper.simulate("keypress", {
     keyCode: 13
@@ -42,9 +40,7 @@ test("invoke endEditing function and leave editing mode after pressing the enter
 test("invoke endEditing function and leave editing mode after blurring the input", () => {
   const mock = jest.fn();
   const wrapper = mount(<ClickToEdit value="HELLO" endEditing={mock} />);
-  wrapper.setState({
-    onEditMode: true
-  });
+  wrapper.simulate("click");
   const inputWrapper = wrapper.find("input.CTE--input");
   inputWrapper.simulate("blur");
   expect(mock).toHaveBeenCalledTimes(1);
@@ -54,9 +50,7 @@ test("invoke endEditing function and leave editing mode after blurring the input
 test("stay on editing mode if press all keys except Enter key", () => {
   const mock = jest.fn();
   const wrapper = mount(<ClickToEdit value="HELLO" endEditing={mock} />);
-  wrapper.setState({
-    onEditMode: true
-  });
+  wrapper.simulate("click");
   const inputWrapper = wrapper.find("input.CTE--input");
   inputWrapper.simulate("keypress", {
     keyCode: 1
@@ -74,6 +68,7 @@ test("pass class props to customize component style", () => {
       endEditing={jest.fn()}
     />
   );
+
   expect(wrapper.hasClass("wrapperClass")).toBeTruthy();
   expect(wrapper.find("span.textClass")).toHaveLength(1);
 
