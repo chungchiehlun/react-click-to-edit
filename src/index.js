@@ -1,27 +1,39 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 
 import "./styles.css";
 
 const ClickToEdit = props => {
+  const [value, setValue] = useState(props.value);
   const [isEditMode, setEditMode] = useState(false);
-  const inputEl = useRef(null);
 
   const getIntoEditMode = () => {
     setEditMode(true);
   };
+
   const getOffEditMode = () => {
     setEditMode(false);
     if (props.endEditing) {
-      props.endEditing(inputEl.current.value);
+      props.endEditing(value);
     }
   };
-  const handleEnterKey = e => {
-    if (e.keyCode === 13 || e.charCode == 13) {
+
+  const handleChange = e => {
+    setValue(e.target.value);
+  };
+
+  const handleKeyPress = e => {
+    if (
+      e.keyCode === 13 ||
+      e.charCode === 13 ||
+      e.keyCode === 27 ||
+      e.charCode === 27
+    ) {
       getOffEditMode();
     }
   };
+
   return (
     <section
       className={classNames("CTE--wrapper", props.wrapperClass)}
@@ -29,35 +41,21 @@ const ClickToEdit = props => {
     >
       {isEditMode ? (
         <input
-          ref={inputEl}
           type="text"
           autoFocus
-          defaultValue={props.value}
+          value={value}
           className={classNames("CTE--input", props.inputClass)}
-          onKeyPress={handleEnterKey}
+          onChange={handleChange}
+          onKeyPress={handleKeyPress}
           onBlur={getOffEditMode}
         />
       ) : (
         <span className={classNames("CTE--text", props.textClass)}>
-          {props.value}
+          {value}
         </span>
       )}
     </section>
   );
 };
-
-// ClickToEdit.propTypes = {
-//   wrapperClass: PropTypes.string,
-//   inputClass: PropTypes.string,
-//   textClass: PropTypes.string,
-//   value: PropTypes.string.isRequired,
-//   endEditing: PropTypes.func.isRequired
-// };
-
-// ClickToEdit.defaultProps = {
-//   wrapperClass: "",
-//   inputClass: "",
-//   textClass: ""
-// };
 
 export default ClickToEdit;

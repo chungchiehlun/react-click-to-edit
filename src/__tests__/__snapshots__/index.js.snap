@@ -21,10 +21,11 @@ exports[`snapshot - onEdit 1`] = `
   <input
     autoFocus={true}
     className="CTE--input"
-    defaultValue="bar"
     onBlur={[Function]}
+    onChange={[Function]}
     onKeyPress={[Function]}
     type="text"
+    value="bar"
   />
 </section>
 `;
