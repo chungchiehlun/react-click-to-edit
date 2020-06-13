@@ -1,0 +1,53 @@
+---
+name: Examples
+---
+import { Playground } from "docz"
+import "./examples.css"
+import CTE from "../dist/index.cjs.js"
+
+## Article
+
+### Give it a try
+
+<div>
+Lorem ipsum
+<CTE
+  wrapperClass="wrapper"
+  inputClass="input"
+  textClass="text"
+  initialValue={"click"} 
+/>
+dolor sit amet, consectetur adipiscing elit. Quisque vestibulum ultricies massa, vel pulvinar metus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris eget malesuada nunc. Maecenas non ultricies neque, ut tempor ligula. Quisque non nisi quis nisl accumsan venenatis vitae vitae est. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nulla dignissim nibh turpis, id sodales arcu accumsan luctus.
+<CTE
+  wrapperClass="wrapper"
+  inputClass="input"
+  textClass="text"
+  initialValue={"click"} 
+/>
+In pulvinar accumsan euismod. Curabitur sodales rhoncus auctor. Donec urna massa, luctus sed libero id, sollicitudin efficitur lectus. Sed ullamcorper, nulla eu aliquet venenatis, mauris tortor fermentum nunc, ac.
+</div>
+
+### Source Code
+
+```css
+/* styles.css */
+.wrapper {
+  padding: 0 0.5ch;
+}
+
+.text {
+  color: #4682b4;
+  text-decoration: underline;
+}
+```
+
+```js
+import CTE from "react-click-to-edit"
+
+<CTE
+  wrapperClass="wrapper"
+  textClass="text"
+  initialValue={"click"} 
+/>
+```
+

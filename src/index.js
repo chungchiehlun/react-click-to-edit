@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
 import classNames from "classnames";
-
 import "./styles.css";
 
 const ClickToEdit = props => {
-  const [value, setValue] = useState(props.value);
+  const [value, setValue] = useState(props.initialValue);
   const [isEditMode, setEditMode] = useState(false);
 
   const getIntoEditMode = () => {
@@ -36,6 +34,7 @@ const ClickToEdit = props => {
 
   return (
     <section
+      data-value={value}
       className={classNames("CTE--wrapper", props.wrapperClass)}
       onClick={getIntoEditMode}
     >
@@ -48,6 +47,7 @@ const ClickToEdit = props => {
           onChange={handleChange}
           onKeyPress={handleKeyPress}
           onBlur={getOffEditMode}
+          size="1"
         />
       ) : (
         <span className={classNames("CTE--text", props.textClass)}>

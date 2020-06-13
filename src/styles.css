@@ -1,30 +1,34 @@
-/* default style */
-.CTE {
-  &--wrapper {
-    font-size: 16px;
-    width: 155px;
-    height: 35px;
+.CTE-- {
+  &wrapper {
+    display: inline-grid;
+    white-space: pre-wrap;
   }
 
-  &--input {
-    font-size: 100%;
-    width: 100%;
-    height: 100%;
+  &wrapper:after, &input, &text {
+    grid-area: 1 / 2;
+    /* resize: none; */
+    text-align: center;
+    font-size: inherit;
+    font-family: inherit;
+  }
+
+  &wrapper:after {
+    content: attr(data-value) ' ';
+    height: 0;
+    visibility: hidden;
+    white-space: pre-wrap;
+  }
+
+  &input {
     margin: 0;
-    border: 1px solid #888;
-    border-radius: 10px;
-    outline: 0;
-    padding: 3px 7px;
-    display: block;
+    padding: 0;
+    border:0;
+    background:none;
+    align-self: baseline;
+    outline: none;
+    box-sizing: border-box;
   }
 
-  &--text {
-    font-size: 100%;
-    width: 100%;
-    height: 100%;
-    padding: 4px 8px;
-    display: flex;
-    align-items: center;
-    white-space: nowrap;
+  &text {
   }
 }

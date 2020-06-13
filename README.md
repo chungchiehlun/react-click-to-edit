@@ -1,5 +1,6 @@
-## React Click-To-Edit
-A simple component make the text editable.
+# React-Click-To-Edit
+
+Add it to your component including text such as label, article and table and make the text editable.
 
 ## Installation
 
@@ -9,37 +10,32 @@ or
 $ yarn add react-click-to-edit
 ```
 
-## General Usage
+## Usage
 
 ```jsx
-import ClickToEdit from "react-click-to-edit"
-
-<ClickToEdit
-  /*
-    String className to be applied to wrapper the input and text element.
-  */
-  wrapperClass="wrapperClase"
-  /*
-  	String className to be applied to the input element.
-  */
-  inputClass="inputClass"
-  /*
-  	String className to be applied to the text element.
-  */
-  textClass="textClass"
-  /*
-  	String value to be applied to the input and text element.
-  */
-  value={value}
-  /*
-  	Function that will be called after the input element lose focus or press carriage return.
-  */
-  endEditing={() => {}}
-/>
+// ESM
+import CTE from "react-click-to-edit";
+or;
+// Commonjs
+const CTE = require("react-click-to-edit");
 ```
 
-## Issues
-Feel free to submit issues and enhancement requests.
+| props        | type          | usage                                                                            |
+| :----------- | ------------- | -------------------------------------------------------------------------------- |
+| wrapperClass | string        | css class applied to the _wrapper_ (or container) consists of _input_ and _text_ |
+| inputClass   | string        | css class applied to the _input_                                                 |
+| textClass    | string        | css class applied to the _text_                                                  |
+| initialValue | string        | initial value of text                                                            |
+| endEditing   | (value) => {} | callback invoked when leaving edit mode by clicking ENTER or ESC                 |
+
+[See elaborate examples](/docs-examples)
+
+## Contributing
+
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
 
 ## License
-MIT 
+
+MIT

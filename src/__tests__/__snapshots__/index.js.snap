@@ -3,6 +3,7 @@
 exports[`snapshot - default 1`] = `
 <section
   className="CTE--wrapper"
+  data-value="foo"
   onClick={[Function]}
 >
   <span
@@ -16,6 +17,7 @@ exports[`snapshot - default 1`] = `
 exports[`snapshot - onEdit 1`] = `
 <section
   className="CTE--wrapper"
+  data-value="bar"
   onClick={[Function]}
 >
   <input
@@ -24,6 +26,7 @@ exports[`snapshot - onEdit 1`] = `
     onBlur={[Function]}
     onChange={[Function]}
     onKeyPress={[Function]}
+    size="1"
     type="text"
     value="bar"
   />

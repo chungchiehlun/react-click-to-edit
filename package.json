@@ -6,6 +6,9 @@
   "module": "dist/index.esm.js",
   "browser": "dist/index.umd.js",
   "scripts": {
+    "docz:dev": "docz dev",
+    "docz:build": "docz build",
+    "docz:serve": "docz serve",
     "test": "jest"
   },
   "husky": {
@@ -61,6 +64,7 @@
     "react-dom": "^16.13.1",
     "react-test-renderer": "^16.13.1",
     "rollup": "^2.11.2",
+    "docz": "^2.3.1",
     "rollup-plugin-postcss": "^3.1.1"
   },
   "dependencies": {
