@@ -28,7 +28,7 @@ const CTE = require("react-click-to-edit");
 | initialValue | string        | initial value of text                                                            |
 | endEditing   | (value) => {} | callback invoked when leaving edit mode by clicking ENTER or ESC                 |
 
-[See elaborate examples](/docs-examples)
+[See elaborate examples](https://react-click-to-edit.web.app/docs-examples)
 
 ## Contributing
 
