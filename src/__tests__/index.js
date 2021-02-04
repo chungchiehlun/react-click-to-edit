@@ -30,7 +30,7 @@ test("enter editing mode when clicking CTE", () => {
   const wrapper = shallow(
     <ClickToEdit initialValue="HELLO" endEditing={jest.fn()} />
   );
-  wrapper.simulate("click");
+  wrapper.find("span").simulate("click");
   expect(wrapper.find("input")).toHaveLength(1);
 });
 
@@ -38,7 +38,7 @@ test("enter editing mode and change value", () => {
   const wrapper = shallow(
     <ClickToEdit initialValue="HELLO" endEditing={jest.fn()} />
   );
-  wrapper.simulate("click");
+  wrapper.find("span").simulate("click");
   wrapper.find("input").simulate("change", { target: { value: "WORLD" } });
   expect(wrapper.find("input").prop("value")).toBe("WORLD");
 });
@@ -46,7 +46,7 @@ test("enter editing mode and change value", () => {
 test("invoke endEditing function and leave editing mode after pressing the enter key", () => {
   const mock = jest.fn();
   const wrapper = mount(<ClickToEdit initialValue="HELLO" endEditing={mock} />);
-  wrapper.simulate("click");
+  wrapper.find("span").simulate("click");
   const inputWrapper = wrapper.find("input");
   inputWrapper.simulate("keypress", {
     keyCode: 13
@@ -58,7 +58,7 @@ test("invoke endEditing function and leave editing mode after pressing the enter
 test("invoke endEditing function and leave editing mode after blurring the input", () => {
   const mock = jest.fn();
   const wrapper = mount(<ClickToEdit initialValue="HELLO" endEditing={mock} />);
-  wrapper.simulate("click");
+  wrapper.find("span").simulate("click");
   const inputWrapper = wrapper.find("input");
   inputWrapper.simulate("blur");
   expect(mock).toHaveBeenCalledTimes(1);
@@ -68,7 +68,7 @@ test("invoke endEditing function and leave editing mode after blurring the input
 test("stay on editing mode if press all keys except Enter key", () => {
   const mock = jest.fn();
   const wrapper = mount(<ClickToEdit initialValue="HELLO" endEditing={mock} />);
-  wrapper.simulate("click");
+  wrapper.find("span").simulate("click");
   const inputWrapper = wrapper.find("input");
   inputWrapper.simulate("keypress", {
     keyCode: 1
@@ -90,6 +90,6 @@ test("pass class props to customize component style", () => {
   expect(wrapper.hasClass("wrapperClass")).toBeTruthy();
   expect(wrapper.find("span.textClass")).toHaveLength(1);
 
-  wrapper.simulate("click");
+  wrapper.find("span").simulate("click");
   expect(wrapper.find("input.inputClass")).toHaveLength(1);
 });

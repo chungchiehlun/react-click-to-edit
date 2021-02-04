@@ -4,10 +4,10 @@ exports[`snapshot - default 1`] = `
 <section
   className="CTE--wrapper"
   data-value="foo"
-  onClick={[Function]}
 >
   <span
     className="CTE--text"
+    onClick={[Function]}
   >
     foo
   </span>
@@ -18,17 +18,12 @@ exports[`snapshot - onEdit 1`] = `
 <section
   className="CTE--wrapper"
   data-value="bar"
-  onClick={[Function]}
 >
-  <input
-    autoFocus={true}
-    className="CTE--input"
-    onBlur={[Function]}
-    onChange={[Function]}
-    onKeyPress={[Function]}
-    size="1"
-    type="text"
-    value="bar"
-  />
+  <span
+    className="CTE--text"
+    onClick={[Function]}
+  >
+    bar
+  </span>
 </section>
 `;
