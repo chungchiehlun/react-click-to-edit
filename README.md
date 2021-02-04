@@ -26,6 +26,7 @@ const CTE = require("react-click-to-edit");
 | inputClass   | string        | css class applied to the _input_                                                 |
 | textClass    | string        | css class applied to the _text_                                                  |
 | initialValue | string        | initial value of text                                                            |
+| startEditing | () => {}      | callback invoked when entering edit mode by clicking the text
 | endEditing   | (value) => {} | callback invoked when leaving edit mode by clicking ENTER or ESC                 |
 
 [See elaborate examples](https://react-click-to-edit.web.app/docs-examples)
