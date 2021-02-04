@@ -7,8 +7,11 @@ const ClickToEdit = props => {
   const [isEditMode, setEditMode] = useState(false);
 
   const getIntoEditMode = () => {
+    if (props.startEditing && !isEditMode) {
+       props.startEditing();
+    }
     setEditMode(true);
-  };
+ };
 
   const getOffEditMode = () => {
     setEditMode(false);
@@ -36,7 +39,6 @@ const ClickToEdit = props => {
     <section
       data-value={value}
       className={classNames("CTE--wrapper", props.wrapperClass)}
-      onClick={getIntoEditMode}
     >
       {isEditMode ? (
         <input
@@ -50,7 +52,10 @@ const ClickToEdit = props => {
           size="1"
         />
       ) : (
-        <span className={classNames("CTE--text", props.textClass)}>
+        <span 
+          className={classNames("CTE--text", props.textClass)}
+          onClick={getIntoEditMode}
+        >
           {value}
         </span>
       )}
