@@ -5,6 +5,8 @@ import replace from "@rollup/plugin-replace";
 import typescript from "rollup-plugin-typescript2";
 import pkg from "./package.json";
 
+const noDeclarationFiles = { compilerOptions: { declaration: false } };
+
 const postcssOptions = {
   plugins: [
     require("postcss-flexbugs-fixes"),
@@ -28,13 +30,12 @@ export default [
       name: "ClickToEdit",
       globals: {
         react: "React"
-      }
+      },
+      indent: false
     },
     plugins: [
       postcss(postcssOptions),
-      typescript({
-        useTsconfigDeclarationDir: true
-      }),
+      typescript({ tsconfigOverride: noDeclarationFiles }),
       resolve(),
       commonjs(),
       // https://github.com/rollup/rollup/issues/487
@@ -58,9 +59,7 @@ export default [
     ],
     plugins: [
       postcss(postcssOptions),
-      typescript({
-        useTsconfigDeclarationDir: true
-      }),
+      typescript({ useTsconfigDeclarationDir: true }),
       resolve(),
       commonjs()
     ],

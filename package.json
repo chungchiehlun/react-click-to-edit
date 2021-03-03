@@ -2,9 +2,10 @@
   "name": "react-click-to-edit",
   "version": "1.2.1",
   "description": "A simple wrapper component make any text editable.",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.js",
-  "browser": "dist/index.umd.js",
+  "main": "lib/index.js",
+  "browser": "dist/index.js",
+  "module": "es/index.js",
+  "types": "types/index.d.ts",
   "scripts": {
     "docz:dev": "docz dev",
     "docz:build": "docz build",
@@ -37,7 +38,10 @@
     "url": "https://github.com/chungchiehlun/react-click-to-edit.git"
   },
   "files": [
-    "dist"
+    "dist",
+    "lib",
+    "es",
+    "types"
   ],
   "devDependencies": {
     "@rollup/plugin-commonjs": "^11.1.0",

@@ -4,12 +4,13 @@
 *.swp
 
 node_modules/
+coverage/
+lib/
 dist/
+types/
+es/
 .docz/
 .firebase/
-
-coverage/
-
 
 
 
