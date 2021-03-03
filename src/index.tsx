@@ -1,8 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, KeyboardEvent, ChangeEvent } from "react";
 import classNames from "classnames";
 import "./styles.css";
 
-const ClickToEdit = props => {
+interface Props {
+  wrapperClass?: string
+  inputClass?: string
+  textClass?: string
+  initialValue: string
+  startEditing?: () => void
+  endEditing?: (value: string) => void
+}
+
+const ClickToEdit: React.FC<Props> = (props) => {
   const [value, setValue] = useState(props.initialValue);
   const [isEditMode, setEditMode] = useState(false);
 
@@ -20,11 +29,11 @@ const ClickToEdit = props => {
     }
   };
 
-  const handleChange = e => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
   };
 
-  const handleKeyPress = e => {
+  const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
     if (
       e.keyCode === 13 ||
       e.charCode === 13 ||
@@ -49,7 +58,7 @@ const ClickToEdit = props => {
           onChange={handleChange}
           onKeyPress={handleKeyPress}
           onBlur={getOffEditMode}
-          size="1"
+          size={1}
         />
       ) : (
         <span 

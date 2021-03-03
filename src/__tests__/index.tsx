@@ -1,7 +1,6 @@
 import React from "react";
-import { act } from "react-dom/test-utils";
 import toJson from "enzyme-to-json";
-import { shallow, mount } from "enzyme";
+import { shallow } from "enzyme";
 import ClickToEdit from "../index";
 
 test("snapshot - default", () => {
@@ -45,7 +44,7 @@ test("enter editing mode and change value", () => {
 
 test("invoke endEditing function and leave editing mode after pressing the enter key", () => {
   const mock = jest.fn();
-  const wrapper = mount(<ClickToEdit initialValue="HELLO" endEditing={mock} />);
+  const wrapper = shallow(<ClickToEdit initialValue="HELLO" endEditing={mock} />);
   wrapper.find("span").simulate("click");
   const inputWrapper = wrapper.find("input");
   inputWrapper.simulate("keypress", {
@@ -57,7 +56,7 @@ test("invoke endEditing function and leave editing mode after pressing the enter
 
 test("invoke endEditing function and leave editing mode after blurring the input", () => {
   const mock = jest.fn();
-  const wrapper = mount(<ClickToEdit initialValue="HELLO" endEditing={mock} />);
+  const wrapper = shallow(<ClickToEdit initialValue="HELLO" endEditing={mock} />);
   wrapper.find("span").simulate("click");
   const inputWrapper = wrapper.find("input");
   inputWrapper.simulate("blur");
@@ -67,7 +66,7 @@ test("invoke endEditing function and leave editing mode after blurring the input
 
 test("stay on editing mode if press all keys except Enter key", () => {
   const mock = jest.fn();
-  const wrapper = mount(<ClickToEdit initialValue="HELLO" endEditing={mock} />);
+  const wrapper = shallow(<ClickToEdit initialValue="HELLO" endEditing={mock} />);
   wrapper.find("span").simulate("click");
   const inputWrapper = wrapper.find("input");
   inputWrapper.simulate("keypress", {
