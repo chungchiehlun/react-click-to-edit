@@ -5,14 +5,14 @@ import ClickToEdit from "../index";
 
 test("snapshot - default", () => {
   const wrapper = shallow(
-    <ClickToEdit initialValue="foo" endEditing={jest.fn()} />
+    <ClickToEdit initialValue="foo" />
   );
   expect(toJson(wrapper)).toMatchSnapshot();
 });
 
 test("snapshot - onEdit", () => {
   const wrapper = shallow(
-    <ClickToEdit initialValue="bar" endEditing={jest.fn()} />
+    <ClickToEdit initialValue="bar" />
   );
   wrapper.simulate("click");
   expect(toJson(wrapper)).toMatchSnapshot();
@@ -20,41 +20,44 @@ test("snapshot - onEdit", () => {
 
 test("render initial value", () => {
   const wrapper = shallow(
-    <ClickToEdit initialValue="HELLO" endEditing={jest.fn()} />
+    <ClickToEdit initialValue="HELLO" />
   );
   expect(wrapper.text()).toBe("HELLO");
 });
 
 test("enter editing mode when clicking CTE", () => {
+  const mock = jest.fn();
   const wrapper = shallow(
-    <ClickToEdit initialValue="HELLO" endEditing={jest.fn()} />
+    <ClickToEdit initialValue="HELLO" startEditing={mock} />
   );
   wrapper.find("span").simulate("click");
   expect(wrapper.find("input")).toHaveLength(1);
+  expect(mock).toHaveBeenCalledTimes(1);
 });
 
 test("enter editing mode and change value", () => {
   const wrapper = shallow(
-    <ClickToEdit initialValue="HELLO" endEditing={jest.fn()} />
+    <ClickToEdit initialValue="HELLO" />
   );
   wrapper.find("span").simulate("click");
   wrapper.find("input").simulate("change", { target: { value: "WORLD" } });
   expect(wrapper.find("input").prop("value")).toBe("WORLD");
 });
 
-test("invoke endEditing function and leave editing mode after pressing the enter key", () => {
+test("leave editing mode when pressing the enter key", () => {
   const mock = jest.fn();
   const wrapper = shallow(<ClickToEdit initialValue="HELLO" endEditing={mock} />);
   wrapper.find("span").simulate("click");
-  const inputWrapper = wrapper.find("input");
+  const inputWrapper = wrapper.find("input").at(0);
   inputWrapper.simulate("keypress", {
     keyCode: 13
   });
   expect(mock).toHaveBeenCalledTimes(1);
+  expect(mock).toHaveBeenCalledWith("HELLO");
   expect(wrapper.find("input")).toHaveLength(0);
 });
 
-test("invoke endEditing function and leave editing mode after blurring the input", () => {
+test("leave editing mode when blurring the input", () => {
   const mock = jest.fn();
   const wrapper = shallow(<ClickToEdit initialValue="HELLO" endEditing={mock} />);
   wrapper.find("span").simulate("click");
@@ -75,7 +78,7 @@ test("stay on editing mode if press all keys except Enter key", () => {
   expect(wrapper.find("input")).toHaveLength(1);
 });
 
-test("pass class props to customize component style", () => {
+test("customize css class of elements", () => {
   const wrapper = shallow(
     <ClickToEdit
       wrapperClass="wrapperClass"

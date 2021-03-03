@@ -10,7 +10,7 @@
     "docz:build": "docz build",
     "docz:serve": "docz serve",
     "build": "rollup -c",
-    "test": "jest"
+    "test": "jest --coverage"
   },
   "husky": {
     "hooks": {

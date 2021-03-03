@@ -8,6 +8,8 @@ dist/
 .docz/
 .firebase/
 
+coverage/
+
 
 
 
