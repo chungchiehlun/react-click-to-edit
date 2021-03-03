@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.2](https://github.com/chungchiehlun/react-click-to-edit/compare/v1.2.1...v1.2.2) (2021-03-03)
+
+### Bug Fixes
+
+- enhance test case ([a8b17ab](https://github.com/chungchiehlun/react-click-to-edit/commit/a8b17ab0155bfacbfd9e39cd994d01b2b45cb6ac))
+
 ### [1.2.1](https://github.com/chungchiehlun/react-click-to-edit/compare/v1.2.0...v1.2.1) (2021-02-04)
 
 ### Bug Fixes
