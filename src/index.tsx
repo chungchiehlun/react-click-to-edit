@@ -35,10 +35,7 @@ const ClickToEdit: React.FC<Props> = (props) => {
 
   const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
     if (
-      e.keyCode === 13 ||
-      e.charCode === 13 ||
-      e.keyCode === 27 ||
-      e.charCode === 27
+      e.code === "Escape" || e.code === "Enter"
     ) {
       getOffEditMode();
     }

@@ -50,7 +50,7 @@ test("leave editing mode when pressing the enter key", () => {
   wrapper.find("span").simulate("click");
   const inputWrapper = wrapper.find("input").at(0);
   inputWrapper.simulate("keypress", {
-    keyCode: 13
+    code: "Enter"
   });
   expect(mock).toHaveBeenCalledTimes(1);
   expect(mock).toHaveBeenCalledWith("HELLO");

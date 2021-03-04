@@ -9,9 +9,7 @@
   "scripts": {
     "docz:dev": "docz dev",
     "docz:build": "docz build",
-    "docz:serve": "docz serve",
-    "build": "rollup -c",
-    "test": "jest --coverage"
+    "docz:serve": "docz serve"
   },
   "husky": {
     "hooks": {

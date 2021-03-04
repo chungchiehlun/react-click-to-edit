@@ -1,25 +1,25 @@
-SHELL := /bin/bash
+NPM_BIN = ./node_modules/.bin
+export PATH := $(NPM_BIN):$(PATH)
+
 .PHONY: install test build publish
 
 install:
 	yarn
 
-test:
-	yarn run test
+clean:
+	./node_modules/.bin/rimraf dist es lib types
 
-build: test
+test:
+	./node_modules/.bin/jest --coverage
+
+build: clean test
 	./node_modules/.bin/rollup -c
 
 publish: build
 	npx standard-version
 	npm publish
 
-docz-dev:
-	yarn run docz:dev
-
-docz-build:
+deploy_docs:
 	yarn run docz:build
-
-docz-deploy: docz-build
 	firebase deploy
 
